@@ -1,10 +1,10 @@
 {
   "name": "7th-guild-mc-launcher",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "Custom third-party Minecraft launcher dedicated for 7th Guild server.",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": "Severium",
+  "homepage": "https://7st.io",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
