@@ -4,7 +4,7 @@ import { useGlobalStore } from '@renderer/hooks/index.global-store'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
-export const SetJavaInstallation = () => {
+export const NoInstallation = () => {
   const navigate = useNavigate()
   const { setDefaultJavaInstancePath } = useGlobalStore()
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
@@ -13,7 +13,11 @@ export const SetJavaInstallation = () => {
     const path = await window.api.locateJavaInstallation()
     if (!path) return onOpen()
     setDefaultJavaInstancePath(path)
-    navigate('/')
+    navigate('/launcher')
+  }
+
+  const installNewJavaInstance = () => {
+    navigate('/java/install')
   }
 
   return (
@@ -50,7 +54,10 @@ export const SetJavaInstallation = () => {
               https://learn.microsoft.com/pl-pl/java/openjdk/download
             </a>
           </div>
-          <div className="flex-1 flex flex-col gap-2 px-2 py-10 rounded-md text-center hover:bg-content2">
+          <div
+            className="flex-1 flex flex-col gap-2 px-2 py-10 rounded-md text-center hover:bg-content2 cursor-pointer"
+            onClick={installNewJavaInstance}
+          >
             <div className="text-custom-10 text-gray-400">Install Java through the launcher</div>
             <div>
               You can use this launcher to download and configure a Java installation for you.

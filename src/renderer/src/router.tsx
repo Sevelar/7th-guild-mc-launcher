@@ -1,20 +1,26 @@
 import { createHashRouter } from 'react-router-dom'
-import { Index } from './pages'
-import { Main } from './pages/main'
-import { SetJavaInstallation } from './pages/set-java-installation'
+import * as Pages from './pages'
 
 export const router = createHashRouter([
   {
     path: '/',
-    element: <Index />,
+    element: <Pages.Main />,
     children: [
       {
         index: true,
-        element: <Main />
+        element: <Pages.Startup />
       },
       {
-        path: 'set-java-installation',
-        element: <SetJavaInstallation />
+        path: 'launcher',
+        element: <Pages.Launcher />
+      },
+      {
+        path: 'java/no-installation',
+        element: <Pages.Java.NoInstallation />
+      },
+      {
+        path: 'java/install',
+        element: <Pages.Java.Install />
       }
     ]
   }

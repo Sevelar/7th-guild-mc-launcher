@@ -1,5 +1,5 @@
 import { API } from '@shared/index.api'
-import { BrowserWindow, WindowOpenHandlerResponse, dialog, ipcMain, shell } from 'electron'
+import { BrowserWindow, WindowOpenHandlerResponse, app, dialog, ipcMain, shell } from 'electron'
 import { access, constants } from 'fs/promises'
 import { join } from 'path'
 
@@ -11,11 +11,16 @@ export class HandlerAPI {
     mainWindow.webContents.setWindowOpenHandler(({ url }) => this.openURLInExternalBrowser(url))
     ipcMain.handle(API.DETECT_JAVA_INSTALLATION, () => this.detectJavaInstallation())
     ipcMain.handle(API.LOCATE_JAVA_INSTALLATION, this.locateJavaInstallation)
+    ipcMain.handle(API.GET_APP_PATH, this.getAppPath)
   }
 
   openURLInExternalBrowser = (url: string) => {
     shell.openExternal(url)
     return { action: 'deny' } as WindowOpenHandlerResponse
+  }
+
+  getAppPath = () => {
+    return app.getAppPath()
   }
 
   detectJavaInstallation = async (path?: string) => {
